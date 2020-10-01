@@ -1,0 +1,54 @@
+<% provide(:title, 'Edit News') %>
+<% flash.each do |type, msg| %>
+  <div class="alert alert-<%=type%>">
+    <%= msg %>
+  </div>
+<% end %>
+<div class="col-12 grid-margin stretch-card">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Edit</h4>
+    <p class="card-description">
+      Edit news
+    </p>
+
+    <%=form_for @news,local: true, html: {multipart: true} do |f|%>
+      <div class="form-group">
+        <label for="exampleInputName1">Title</label>
+        <%=f.text_field :title, class: 'form-control', placeholder: 'Enter Title'%>
+      </div>
+      <div class="form-group">
+        <label for="">Infor</label>
+        <%=f.text_field :infor, class: 'form-control', placeholder: 'Enter Title'%>
+      </div>
+      <div class="form-group">
+        <label for="exampleTextarea1">Full</label>
+        <%=f.text_area :description, class: 'form-control', placeholder: 'Enter full of news',size: "60x12" %>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword4">Image</label>
+     
+        <%=f.file_field :img%><br>
+        <%=@news.img%> 
+      </div>
+      <div class="form-checkform-check-primary">
+        <label class="form-check-label">
+        View
+        </label>
+        <%=f.radio_button :checked, true%>
+        <%=f.label :checked, "Yes", :value=>"true"%>
+        <%=f.radio_button :checked, false%>
+        <%=f.label :checked, "No", :value=>"false"%>
+      </div>
+      <br>
+      <div class="form-group">
+     
+    </div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%=f.submit ("SUBMIT"), class:'btn btn-gradient-primary mr-2'%>
+      <%=link_to ("CANCEL"), news_index_path, class: 'btn btn-light'%>     
+    <% end %>
+  </div>
+</div>
+</div>

@@ -1,0 +1,110 @@
+<%=render "shared/header"%>
+  <main>
+      <!-- slider Area Start-->
+      <div class="slider-area position-relative">
+          <div class="slider-active">
+              <!-- Single Slider -->
+              <div class="single-slider">
+                  <div class="slider-cap-wrapper">
+                      <div class="hero__img">
+                          <img src="../home/img/hero/hero_img4.png" alt=""  data-animation="fadeInRight" data-transition-duration="5s">
+                      </div>
+                      <div class="hero__caption hero__caption2">
+                          <h1 data-animation="fadeInLeft" data-delay=".4s"><%=@recruitment.name%></h1>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Shape -->
+          <div class="hero-shape ">
+              <img src="../home/img/gallery/shape2.png" alt="">
+          </div>
+      </div>
+      <!-- slider Area End-->
+      <!--? Blog Area Start -->
+      <section class="blog_area single-post-area section-padding">
+         <div class="container">
+            <div class="row">
+                <div class="col-lg-2"></div>
+               <div class="col-lg-8 posts-list">
+                  <div class="single-post">
+                     <div class="blog_details">
+                     
+                    <ul class="unordered-list">
+                        <li>Job Level  :  <%=@recruitment.level.name%></li>
+                        <li>Job Type  : <%=@recruitment.type_of_job.name%></li>
+                        <li>Salary  :<%=@recruitment.salary%></li>
+                        <li>Experience Level  :<%=@recruitment.experience_level.name%></li>
+                        <li>Expire Date :<%=@recruitment.expiration_date%></li>
+                    </ul>
+                     <hr>
+                     <h2 style="color: #2d2d2d;">JOB DESCRIPTION</h2>
+                        <p class="excert">
+                          <%=  @recruitment.descriptions%>                         
+                        </p>
+                     <h2 style="color: #2d2d2d;">BENIFITS</h2>
+                        <p class="excert">
+                          <%=  @recruitment.benifits%>                         
+                        </p>
+                     <h2 style="color: #2d2d2d;">EXPERIENCE</h2>
+                        <p class="excert">
+                          <%=  @recruitment.experience%>                         
+                        </p>
+                     </div>
+                  </div>
+                  <div class="comment-form">
+                     <h4>APPLICATION PROCESS</h4>
+                     <% flash.each do |type, msg| %>
+                        <div class="alert alert-<%=type%>">
+                          <%= msg %>
+                        </div>
+                      <% end %>
+                     <p>
+                     We will set up an interview to get to know you, take a look at your previous work and discuss the requirements specified with the position.        
+                     </p>
+                     <%=form_for Candidate.new,html: {multipart: true}, class:'form-contact comment_form', id:'commentForm' do |f|%>
+                        <div class="row">
+                           <div class="col-12">
+                              <div class="form-group">
+                              <%=f.text_field :name, class: 'form-control', placeholder:'Fullname',:required=>true%>
+                              </div>
+                           </div>
+                           <div class="col-12">
+                              <div class="form-group">
+                              <%=f.text_field :email, class: 'form-control', placeholder:'Email',:required=>true%>
+                              </div>
+                           </div>
+                           <div class="col-12">
+                              <div class="form-group">
+                              <%=f.text_field :phone, class:'form-control', placeholder: 'Phone Number',:required=>true%>
+                              </div>
+                           </div>  
+                           <div class="col-12">
+                              <div class="form-group">
+                              <%=f.text_area :note, class:'form-control', placeholder: 'Note', size: "60x5"%>
+                              </div>
+                           </div>                                                     
+                           <div class="col-12">
+                              <div class="form-group">
+                              <label>Attachment file</label><br>
+                              <%=f.file_field :cv, :required=>true%>
+                              </div>
+                           </div>   
+                           <%= f.hidden_field :job_id, value: @recruitment.id %>    
+                           <%= f.hidden_field :date_to_interview %>        
+                           <%= f.hidden_field :date_to_offer %>  
+                        </div>
+                        <div class="form-group">
+                            <%=f.submit ('SUBMIT'), class:'button butoon-contactForm btn_1 boxed-btn'%>
+                        </div>
+                        
+                    <% end %>
+                  </div>
+               </div>
+                                
+            </div>
+         </div>
+      </section>
+      <!-- Blog Area End -->
+   </main>
+   <%=  render "shared/footer"%>

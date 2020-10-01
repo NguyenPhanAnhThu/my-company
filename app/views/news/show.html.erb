@@ -1,0 +1,126 @@
+<%=render "shared/header"%>
+  <main>
+  <!-- slider Area Start-->
+  <div class="slider-area position-relative">
+      <div class="slider-active">
+          <!-- Single Slider -->
+          <div class="single-slider">
+              <div class="slider-cap-wrapper">
+                  <div class="hero__img">
+                      <img src="../home/img/hero/hero_img4.png" alt=""  data-animation="fadeInRight" data-transition-duration="5s">
+                  </div>
+                  <div class="hero__caption hero__caption2">
+                      <h1 data-animation="fadeInLeft" data-delay=".4s">Blog Details</h1>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Shape -->
+      <div class="hero-shape ">
+          <img src="../home/img/gallery/shape2.png" alt="">
+      </div>
+  </div>
+  <!-- slider Area End-->
+  <!--? Blog Area Start -->
+  <section class="blog_area single-post-area section-padding">
+     <div class="container">
+        <div class="row">
+        <div class="col-lg-2"></div>
+           <div class="col-lg-8 posts-list">
+              <div class="single-post">
+
+                 <div class="blog_details">
+                    <h2 style="color: #2d2d2d;">
+                    <%=@news.title%>
+                    </h2>
+                    <ul class="blog-info-link mt-3 mb-4">
+                       <li><a href="#"><i class="fa fa-clock"></i><%=@news.created_at.to_date %></a></li>
+                       
+                    </ul>
+                    <div class="feature-img">
+                   
+                    <%=image_tag @news.img_url %>
+                 </div>
+                 <div class="quote-wrapper">
+                 <div class="quotes">
+                 <%=@news.infor%>
+                 </div>
+              </div>
+                    <p class="excert">
+                       <%=@news.description%>
+                    </p>
+                    <p>
+                       MCSE boot camps have its supporters and its detractors. Some people do not understand why you
+                       should have to spend money on boot camp when you can get the MCSE study materials yourself at a
+                       fraction of the camp price. However, who has the willpower to actually sit through a
+                       self-imposed MCSE training. who has the willpower to actually
+                    </p>
+
+                   
+                 </div>
+              </div>
+
+         
+              <div class="comments-area">
+                 <h4><%=@news.comments.size%> Comments</h4>
+                 <% @news.comments.each do |comment| %>
+                 <div class="comment-list">
+                    <div class="single-comment justify-content-between d-flex">
+                       <div class="user justify-content-between d-flex">
+                          
+                          <div class="desc">
+                             <p class="comment"><%= comment.body %></p>
+                             <div class="d-flex justify-content-between">
+                                <div class="d-flex align-items-center">
+                                   <h5>
+                                      <a href="#"><%= comment.commenter %> | <%= comment.email %></a>
+                                   </h5>
+                                   <p class="date"><%= comment.created_at %></p>
+                                </div>
+                                
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+                <% end %>
+              </div>
+              <div class="comment-form">
+                 <h4>Leave a Reply</h4>
+              
+                 <%= form_with(model: [ @news, @news.comments.build], local:true) do |form| %>
+                    <div class="row">
+                       <div class="col-12">
+                          <div class="form-group">
+                    
+                                <%=form.text_area :body, class:'form-control w-100', placeholder: 'Write Comment', size: "30x9"%>
+                          </div>
+                       </div>
+                       <div class="col-sm-6">
+                          <div class="form-group">
+                          <%= form.text_field :commenter, class:'form-control', placeholder: 'Name',:required=>true%>
+                            
+                          </div>
+                       </div>
+                       <div class="col-sm-6">
+                          <div class="form-group">
+                            <%=form.text_field :email, class:'form-control', placeholder:'Email', :required=>true%>
+                          </div>
+                       </div>
+                     
+                    </div>
+                    <div class="form-group">
+                       
+                       <%= form.submit ("Post Comment") , class:'button button-contactForm btn_1 boxed-btn' %>
+                    </div>
+                    <% end %>
+            
+              </div>
+           </div>
+
+        </div>
+     </div>
+  </section>
+  <!-- Blog Area End -->
+</main>
+<%=render "shared/footer"%>

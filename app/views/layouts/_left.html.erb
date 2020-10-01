@@ -1,0 +1,134 @@
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:partials/_settings-panel.html -->
+  <div id="settings-trigger"><i class="mdi mdi-format-color-fill"></i></div>
+  <div id="theme-settings" class="settings-panel">
+    <i class="settings-close mdi mdi-close"></i>
+    <p class="settings-heading">SIDEBAR SKINS</p>
+    <div class="sidebar-bg-options selected" id="sidebar-default-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Default</div>
+    <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+    <p class="settings-heading mt-2">HEADER SKINS</p>
+    <div class="color-tiles mx-0 px-4">
+      <div class="tiles primary"></div>
+      <div class="tiles success"></div>
+      <div class="tiles warning"></div>
+      <div class="tiles danger"></div>
+      <div class="tiles info"></div>
+      <div class="tiles dark"></div>
+      <div class="tiles default light"></div>
+    </div>
+  </div>
+  <!-- partial -->
+  <!-- partial:partials/_sidebar.html -->
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item nav-profile">
+        <span class="nav-link">
+          <%=image_tag current_user.picture_url%>
+          <span class="nav-profile-text"><%=link_to current_user.fullname, users_path%></span>
+        </span>
+      </li>
+      <li class="nav-item">
+      <%=link_to home_index_path, class: 'nav-link' do %>
+        <i class="mdi mdi-account-multiple menu-icon"></i>              
+        <span class="menu-title">Home</span>
+      <%end%>
+      </li>
+      <li class="nav-item">
+        <%=link_to jobs_path, class: 'nav-link' do %>
+          <i class="mdi mdi-briefcase-check menu-icon"></i>              
+          <span class="menu-title">Job</span>
+        <%end%>
+      </li>
+      <li class="nav-item">
+        <%=link_to candidates_path, class: 'nav-link' do %>
+          <i class="mdi mdi-account-star menu-icon"></i>              
+        <span class="menu-title">Candidate</span>
+        <%end%>
+      </li>
+      <li class="nav-item">
+        <%=link_to  news_index_path, class: 'nav-link' do %>
+        
+          <i class="mdi mdi-newspaper menu-icon"></i>              
+          <span class="menu-title">News</span>     
+        <%end%>    
+      </li>
+      <li class="nav-item">
+      <%=link_to project_index_path, class: 'nav-link' do %>
+        <i class="mdi mdi-account-multiple menu-icon"></i>              
+        <span class="menu-title">Customer</span>
+      <%end%>
+      </li>
+      <li class="nav-item">
+        <%=link_to abouts_path, class: 'nav-link' do %>
+          <i class="mdi mdi-note-plus-outline menu-icon"></i>              
+          <span class="menu-title">About</span>
+        <%end%>
+      </li>    
+       
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+          <i class="mdi mdi-apps menu-icon"></i>              
+          <span class="menu-title">General</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="page-layouts">
+          <ul class="nav flex-column sub-menu">
+        
+          <li class="nav-item">
+            <%=link_to  level_index_path, class: 'nav-link' do %>                      
+              <span class="menu-title">Level</span>     
+            <%end%>    
+          </li>  
+          <li class="nav-item">
+          <%=link_to  experience_level_index_path, class: 'nav-link' do %>                      
+            <span class="menu-title">Experience Level</span>     
+          <%end%>    
+        </li>          
+           
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts">
+          <i class="mdi mdi-chart-areaspline menu-icon"></i>              
+          <span class="menu-title">Statistical</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="sidebar-layouts">
+          <ul class="nav flex-column sub-menu">
+          <li class="nav-item">     
+            <%=link_to statistic_by_job_path, class:'nav-link' do %>                      
+              Statistical by Jobs    
+            <% end %>    
+          </li> 
+          <li class="nav-item">     
+          <%=link_to statistic_by_apply_path, class:'nav-link' do %>                      
+            Statistical by Apply    
+          <% end %>    
+        </li>
+           
+          </ul>
+        </div>
+      </li>
+
+
+
+
+
+
+      <li class="nav-item sidebar-actions">
+        <a class="nav-link" href="#">
+          <i class="mdi mdi-circle-outline menu-icon text-danger"></i>
+          Settings
+        </a>
+        <a class="nav-link" href="#">
+          <i class="mdi mdi-circle-outline menu-icon text-danger"></i>
+          Contact Support
+        </a>
+        <span class="nav-link">
+          &copy; 2018 Gleam Admin
+        </span>
+      </li>
+    </ul>
+  </nav>

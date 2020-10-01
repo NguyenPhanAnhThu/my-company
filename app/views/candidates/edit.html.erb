@@ -1,0 +1,76 @@
+<% provide(:title, 'Edit Candidate') %>
+<div class="col-12 grid-margin stretch-card">
+<div class="card">
+<% flash.each do |type, msg| %>
+  <div class="alert alert-<%=type%>">
+    <%= msg %>
+  </div>
+<% end %>
+<br>
+  <div class="card-body">
+    <h4 class="card-title">Edit</h4>
+    <p class="card-description">
+      Edit news
+    </p>
+
+    <%=form_for @candidate,local: true, html: {multipart: true} do |f|%>
+      <div class="form-group">
+        <label for="exampleInputName1">Name</label>
+        <%=f.text_field :name, class: 'form-control', disabled: true%>
+      </div>
+      <div class="form-group">
+      <label for="exampleInputName1">Position</label>
+      <input type="text" value=" <%=@candidate.job.name%>" class='form-control', disabled>
+
+    </div>
+    <div class="form-group">
+    <label for="exampleInputName1">Phone</label>
+    <%=f.text_field :phone, class: 'form-control', disabled: true%>
+  </div>
+    <div class="form-group">
+    <label for="exampleInputName1">CV:</label><br>
+    <a href="http://localhost:3000<%=@candidate.cv%>">Click to read</a>
+        </div>
+
+      <div class="form-group">
+        <label for="exampleTextarea1">Full</label>
+        <%=f.text_area :note, class: 'form-control',size: "60x12", disabled: true %>
+      </div>
+    
+
+      <br>
+      <div class="form-group">
+ 
+      <div class="form-checkform-check-primary">
+      <label class="form-check-label">
+      Fail???
+      </label>
+      <%=f.radio_button :status, 4%>
+      <%=f.label :status, "Yes", :value=>"4"%>
+
+    </div>
+
+    </div>
+      <% if @candidate.date_to_interview == '' %>
+      <div class="form-group">
+        <label for="exampleTextarea1">Date to interview</label>
+        <%=f.text_field :date_to_interview, "data-provide" => 'datepicker', id: 'datepicker'%>
+      </div>
+      <% else %>
+      <div class="form-group">
+      <label for="date_to_offer">Date to interview</label>
+      <%= @candidate.date_to_interview %>
+    </div>
+      <div class="form-group">
+        <label for="date_to_offer">Date to offer</label>
+        <%=f.text_field :date_to_offer, "data-provide" => 'datepicker', id: 'datepicker'%>
+      </div>
+
+      <% end %>
+
+      <%=f.submit ("SUBMIT"), class:'btn btn-gradient-primary mr-2'%>
+      <%=link_to ("CANCEL"), candidates_path, class: 'btn btn-light'%>     
+    <% end %>
+  </div>
+</div>
+</div>

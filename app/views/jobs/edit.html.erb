@@ -1,0 +1,70 @@
+<% provide(:title, 'Add Job') %>
+<% flash.each do |type, msg| %>
+  <div class="alert alert-<%=type%>">
+    <%= msg %>
+  </div>
+<% end %>
+<div class="col-12 grid-margin stretch-card">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Edit Job</h4>
+    <p class="card-description">
+      Add Job
+    </p>
+
+    <%=form_for @job,local: true do |f|%>
+      <div class="form-group">
+        <label for="exampleInputName1">Job</label>
+        <%=f.text_field :name, class: 'form-control', placeholder: 'Enter Job', :required=>true%>
+      </div>
+      <div class="form-group">
+        <label for="">Salary</label>
+        <%=f.text_field :salary, class: 'form-control', placeholder: 'Enter Salary', :required=>true%>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleTextarea1">Expire Date</label>
+        <%=f.text_field :expiration_date, "data-provide" => 'datepicker', id: 'datepicker'%>
+      </div>
+
+      <div class="form-group">
+      <label for="exampleFormControlSelect1">Level</label>
+     
+      <%= f.collection_select(:level_id, Level.all, :id, :name, {:class=>'form-control form-control-lg'}) %>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Type of Job</label>
+        <%= f.collection_select(:type_of_job_id, TypeOfJob.all, :id, :name, {:class=>'form-control form-control-lg'}) %>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Experience Level</label>
+        <%= f.collection_select(:experience_level_id, ExperienceLevel.all, :id, :name, {:class=>'form-control form-control-lg'}) %>
+      </div>
+      <div class="form-group">
+        <label for="cdescriptions">Description </label>
+        <%=f.rich_text_area :descriptions, class: 'form-control', size: '60x12'%>
+      </div>
+      <div class="form-group">
+        <label for="cbenifits">Benifits </label>
+        <%=f.rich_text_area :benifits, class: 'form-control', size: '60x12'%>
+      </div>
+      <div class="form-group">
+        <label for="cbenifits">Experience </label>
+        <%=f.rich_text_area :experience, class: 'form-control', size: '60x12'%>
+      </div>
+      <div class="form-checkform-check-primary">
+      <label class="form-check-label">
+      View
+      </label>
+      <%=f.radio_button :status, true%>
+      <%=f.label :status, "Yes", :value=>"true"%>
+      <%=f.radio_button :status, false%>
+      <%=f.label :status, "No", :value=>"false"%>
+    </div>
+    
+      <%=f.submit ("SUBMIT"), class:'btn btn-gradient-primary mr-2'%>
+      <%=link_to ("CANCEL"), news_index_path, class: 'btn btn-light'%>    
+    <% end %>
+  </div>
+</div>
+</div>

@@ -1,0 +1,6 @@
+<%=form_for :interview_letter do |i|%>
+    <div class="form-group">
+    <label for="exampleTextarea1">Expire Date</label>
+    <%=i.text_field :date, "data-provide" => 'datepicker', id: 'datepicker'%>
+  </div>
+<% end %>

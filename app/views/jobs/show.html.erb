@@ -1,0 +1,101 @@
+<div class="col-lg-12 grid-margin stretch-card">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Detail Job</h4>
+ 
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Id
+            </th>
+            <th>
+               Fullname
+            </th>
+            <th>
+              Email
+            </th>
+            <th>
+              Phone
+            </th>
+            <th>
+              Attachment
+            </th>
+            <th>
+              Status
+            </th>
+            <th>
+            Action
+            </th>
+         
+          </tr>
+        </thead>
+        <tbody>
+        <% @job.each do |j| %>
+          <tr>
+            <td class="py-1">
+              <%=j.id%>
+            </td>
+            <td>
+              <%=j.name%>
+            </td>
+            <td>
+              <%=j.email%>
+            </td>
+            <td>
+              <%=j.phone%>
+            </td>
+            <td>
+            
+            <a href="http://localhost:3000<%=j.cv%>">CV</a>
+            </td>
+         
+            <td>
+            <% if j.status==1%>
+              <label class="badge badge-info">New</label>
+            <% elsif j.status==2%>
+            <label class="badge badge-primary">Interview</label>
+            <% elsif j.status==3%>
+            <label class="badge badge-success">Closed</label>
+            <% elsif j.status==4%>
+            <label class="badge badge-danger">Fail</label>
+            <% end%>
+
+            </td>
+
+            <td>
+            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteCandidate-<%=j.id%>">
+            Delete
+        </button> 
+        <!-- Modal -->
+        <div class="modal fade" id="deleteCandidate-<%=j.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete candidate? #<%=j.id%></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%=button_to 'Delete', j, method: :delete, class: 'btn btn-primary'%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End delete modal -->      
+            </td>
+          </tr>
+        <%end%>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

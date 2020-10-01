@@ -1,0 +1,94 @@
+<% provide(:title, 'Job Description') %>
+<% flash.each do |type, msg| %>
+  <div class="alert alert-<%=type%>">
+    <%= msg %>
+  </div>
+<% end %>
+<button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal" data-target="#addLevel">
+  Add Level
+</button>
+<br><br>
+
+<!-- Modal -->
+<div class="modal fade" id="addLevel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <%=form_with scope: :level, local: true do |f|%>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="form-group">
+      <label for="exampleInputName1">Level</label>
+      <%=f.text_field :name, class: 'form-control', placeholder: 'Enter Level', :required=>true%>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%=f.submit ("SUBMIT"), class:'btn btn-gradient-primary mr-2'%>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<div class="card"> 
+  <div class="card-body">
+    <h4 class="card-title">Level</h4>
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+          <table id="order-listing" class="table">
+            <thead>
+              <tr>   
+                <th>Id#</th>
+                <th>Level</th>               
+         
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @levels.each do |n|%>
+              <tr>
+                <td><%=n.id%></td>
+                <td><%=n.name%></td>                 
+                <td>
+                <%=link_to 'Edit', edit_level_path(n), class: 'btn btn-outline-primary'%>
+                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteLevel-<%=n.id%>">
+                    Delete
+                </button>              
+                  <!-- Modal -->
+                  <div class="modal fade" id="deleteLevel-<%=n.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Delete news #<%=n.id%></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <%=button_to 'Delete', n, method: :delete, class: 'btn btn-primary'%>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End delete modal -->
+                  </td>
+              </tr>
+            <%end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

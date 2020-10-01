@@ -1,0 +1,100 @@
+
+<% provide(:title, 'Candidates') %>
+
+
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-<%=type%>">
+      <%= msg %>
+    </div>
+  <% end %>
+  <div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Candidates</h4>
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+          <table id="order-listing" class="table">
+            <thead>
+              <tr>
+                  <th>Id #</th>
+                  <th>Name</th>
+                  <th>Mail</th>
+                  <th>Job</th>
+                  <th>Phone</th>
+                  <th>CV</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                  
+              </tr>
+            </thead>
+            <tbody>
+              <%- @candidate.each do |c| %>
+              <tr>
+                  <td><%=c.id%></td>
+                  <td><%=c.name%></td>
+                  <td><%=c.email%></td>
+                  <td><%=c.job.name%></td>
+                  <td><%=c.phone%></td>
+                  <td><a href="http://localhost:3000<%=c.cv%>">CV</a></td>
+                  <td>
+                  <% if c.status==1%>
+                    <% if c.date_to_interview =='' %>
+                    <%= link_to "Send email","javascript: alert('Please check the time to interview before send email (Choose button View)')"%><br>
+                    <% else%>
+                    <%= link_to "Send email", :controller => "jobs", :action => "send_mail", :id =>c.id %><br>
+                    <%end%>
+                
+                    <label class="badge badge-info">New</label>
+                  <% elsif c.status==2 %>
+                    <% if c.date_to_offer == ''%>
+                    <%=link_to "Send email", "javascript: alert('Please check the time to offer before send email (Choose button View)')"%><br>
+                    <% else %>
+                    <%= link_to "Send email", :controller => "jobs", :action => "send_mail_to_offer", :id =>c.id %><br>
+                    <% end %>
+                  
+
+                  <label class="badge badge-primary">Interview</label>
+                  <% elsif c.status==3%>
+                  <label class="badge badge-success">Closed</label>
+                  <% elsif c.status==4%>
+                  <label class="badge badge-danger">Fail</label>
+                  <% end %>
+                  </td>
+                  <td>
+                   
+                    <%=link_to 'View', edit_candidate_path(c.id), class: 'btn btn-outline-primary'%>
+                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteCandidate-<%=c.id%>">
+                    Delete
+                </button> 
+                <!-- Modal -->
+                <div class="modal fade" id="deleteCandidate-<%=c.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete candidate? #<%=c.id%></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <%=button_to 'Delete', c, method: :delete, class: 'btn btn-primary'%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End delete modal -->       
+                  </td>
+              </tr>
+                <% end %>
+                # <%= paginate @candidate, theme: 'twitter-bootstrap-3' %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

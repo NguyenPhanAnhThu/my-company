@@ -1,0 +1,80 @@
+<div class="row">
+<div class="col-12">
+<div class="border-bottom text-center pb-4">
+ 
+<%=image_tag current_user.picture_url, class: 'img-lg rounded-circle mb-3'%>
+  <p><%=@user.fullname%></p>
+
+  <%=link_to 'Edit Profile',edit_home_path(@user), class: "btn btn-gradient-success"%>
+</div>
+<div class="py-4">
+  <p class="clearfix">
+    <span class="float-left">
+      Status
+    </span>
+    <span class="float-right text-muted">
+      Active
+    </span>
+</p>
+<p class="clearfix">
+  <span class="float-left">
+    Gender
+  </span>
+  <span class="float-right text-muted">
+    <%=@user.is_male%>
+  </span>
+</p>
+<p class="clearfix">
+  <span class="float-left">
+    Birthday
+  </span>
+  <span class="float-right text-muted">
+    <%=@user.birthday%>
+  </span>
+</p>
+<p class="clearfix">
+  <span class="float-left">
+    Address
+  </span>
+  <span class="float-right text-muted">
+    <%=@user.address%>
+  </span>
+</p>
+<p class="clearfix">
+  <span class="float-left">
+    Position
+  </span>
+  <span class="float-right text-muted">
+    <%=@user.position%>
+  </span>
+</p>
+<p class="clearfix">
+  <span class="float-left">
+    Phone
+  </span>
+  <span class="float-right text-muted">
+    <%=@user.phone%>
+  </span>
+</p>
+<p class="clearfix">
+  <span class="float-left">
+    Mail
+  </span>
+  <span class="float-right text-muted">
+    <%=@user.email%>
+  </span>
+</p>
+<p class="clearfix">
+  <span class="float-left">
+    Information
+  </span>
+  <span class="float-right text-muted">
+    <%=@user.infor%>
+  </span>
+</p>
+
+</div>
+<button class="btn btn-gradient-primary btn-block">Preview</button>
+
+</div>
+</div>

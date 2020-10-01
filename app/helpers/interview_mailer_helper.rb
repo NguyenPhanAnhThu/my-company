@@ -1,0 +1,2 @@
+module InterviewMailerHelper
+end

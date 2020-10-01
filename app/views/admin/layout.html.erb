@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title><%= full_title(yield(:title)) %></title>
+
+    <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'style', 'vendor.bundle.addons', 'vendor.bundle.base', 'materialdesignicons.min'%>
+
+  <%= javascript_include_tag 'dashboard' %>
+    <link rel="shortcut icon" href="images/favicon.png" />  
+  </head>
+
+  <body>
+  <div class="container-scroller">
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/left' %>
+  <%= render 'layouts/main' %>
+  </div>
+  <%=javascript_include_tag 'jquery.min', 'home' %>
+ 
+
+  </body>
+</html>

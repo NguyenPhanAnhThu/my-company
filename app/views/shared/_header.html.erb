@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Egde Works Software</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%=favicon_link_tag 'ew-favicon.png'%>
+
+    <%= csrf_meta_tags %>
+    <!-- CSS here -->
+	<link rel="stylesheet" href="../home/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../home/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../home/css/slicknav.css">
+    <link rel="stylesheet" href="../home/css/flaticon.css">
+    <link rel="stylesheet" href="../home/css/progressbar_barfiller.css">
+    <link rel="stylesheet" href="../home/css/gijgo.css">
+    <link rel="stylesheet" href="../home/css/animate.min.css">
+    <link rel="stylesheet" href="../home/css/animated-headline.css">
+	<link rel="stylesheet" href="../home/css/magnific-popup.css">
+	<link rel="stylesheet" href="../home/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="../home/css/themify-icons.css">
+	<link rel="stylesheet" href="../home/css/slick.css">
+	<link rel="stylesheet" href="../home/css/nice-select.css">
+	<link rel="stylesheet" href="../home/css/style.css">
+
+</head>
+<body>
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                <%=image_tag @about.logo_url %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                        <!-- Logo -->
+                        <div class="logo">
+                            
+                            <%=image_tag @about.logo_url %>
+
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><%=link_to 'Home',home_index_path%></li>
+                                    <li><%=link_to 'News ', all_news_index_path%></li>
+                                    <li><%=link_to 'Projects ', our_customer_index_path%></li>
+                                   
+                                  
+                                    <li><%=link_to 'Recruitment', recruitment_index_path%></li>
+                                </ul>
+                            </nav>
+                        </div>          
+                        <!-- Header-btn -->
+                        <div class="header-btns d-none d-lg-block f-right">
+                            <a href="#" class="border-btn"><i class="fas fa-phone"></i><%=@about.hotline%></a>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <!-- header end -->
